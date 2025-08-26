@@ -1,1 +1,810 @@
-include: package:flutter_lints/flutter.yaml
+formatter:
+  page_width: 100
+
+analyzer:
+  exclude:
+    - "bricks/**"
+    - "pub_local/biometric_invalidator/**"
+    - "pub_local/call_detection/**"
+    - "pub_local/custom_linter/**"
+    - "pub_local/flutter_native_log_handler/**"
+    - "pub_local/flutter_test_reporter/**"
+    - "pub_local/golden_test_engine/**"
+    - "pub_local/gallery_saver/**"
+    - "pub_local/group_ib/**"
+    - "pub_local/go_router/**"
+    - "pub_local/http_proxy/**"
+    - "pub_local/permission_resolver/**"
+    - "pub_local/screenshot_handler/**"
+    - "pub_local/se_plugin/**"
+    - "pub_local/sheet/**"
+    - "pub_local/yandex_mapkit/**"
+    - "pub_local/talsec/**"
+    - "pub_local/app_telemetry_kit/**"
+    - "pub_local/disk_space/**"
+    - "pub_local/flutter_facebook_app_events/**"
+    - "pub_local/myid/**"
+    - "pub_local/talsec_certificates/**"
+    - "test/generated_migrations/**"
+    - "**/*.g.dart" # All generated files
+    - "**/*.mocks.dart" # All generated files
+  language:
+    strict-casts: true # Ensures that the type inference engine never implicitly casts from dynamic to a more specific type
+    strict-inference: true # Ensures that the type inference engine never chooses the dynamic type when it can’t determine a static type
+    strict-raw-types: true # Ensures that the type inference engine never chooses the dynamic type when it can’t determine a static type due to omitted type arguments
+  errors:
+    todo: ignore
+    invalid_use_of_visible_for_testing_member: error
+    invalid_use_of_protected_member: error
+    invalid_annotation_target: ignore
+    always_use_package_imports: error
+    avoid_dynamic_calls: error
+    avoid_empty_else: error
+    avoid_print: warning
+    avoid_relative_lib_imports: error
+    avoid_returning_null_for_future: error
+    avoid_slow_async_io: error
+    avoid_type_to_string: error
+    avoid_types_as_parameter_names: error
+    avoid_web_libraries_in_flutter: error
+    cancel_subscriptions: error
+    close_sinks: error
+    comment_references: error
+    control_flow_in_finally: error
+    empty_statements: error
+    hash_and_equals: error
+    invariant_booleans: error
+    iterable_contains_unrelated_type: error
+    list_remove_unrelated_type: error
+    literal_only_boolean_expressions: error
+    no_duplicate_case_values: error
+    no_logic_in_create_state: error
+    prefer_void_to_null: error
+    test_types_in_equals: error
+    throw_in_finally: error
+    unnecessary_statements: error
+    unrelated_type_equality_checks: error
+    use_key_in_widget_constructors: error
+    valid_regexps: error
+    library_private_types_in_public_api: ignore
+    deprecated_member_use_from_same_package: ignore
+    deprecated_member_use: ignore
+
+linter:
+  # https://dart.dev/tools/linter-rules
+  rules:
+    always_declare_return_types: true
+    always_put_control_body_on_new_line: false
+    always_put_required_named_parameters_first: true
+    always_specify_types: false
+    always_use_package_imports: true
+    annotate_overrides: true
+    annotate_redeclares: true
+    avoid_annotating_with_dynamic: false
+    avoid_bool_literals_in_conditional_expressions: true
+    avoid_catches_without_on_clauses: false
+    avoid_catching_errors: false
+    avoid_classes_with_only_static_members: false
+    avoid_double_and_int_checks: true
+    avoid_dynamic_calls: false
+    avoid_empty_else: true
+    avoid_equals_and_hash_code_on_mutable_classes: false
+    avoid_escaping_inner_quotes: false
+    avoid_field_initializers_in_const_classes: false
+    avoid_final_parameters: false
+    avoid_function_literals_in_foreach_calls: true
+    avoid_implementing_value_types: false
+    avoid_init_to_null: true
+    avoid_js_rounded_ints: false
+    avoid_multiple_declarations_per_line: false
+    avoid_null_checks_in_equality_operators: true
+    avoid_positional_boolean_parameters: false
+    avoid_print: true
+    avoid_private_typedef_functions: true
+    avoid_redundant_argument_values: true
+    avoid_relative_lib_imports: true
+    avoid_renaming_method_parameters: true
+    avoid_return_types_on_setters: true
+    avoid_returning_null_for_void: true
+    avoid_returning_this: true
+    avoid_setters_without_getters: false
+    avoid_shadowing_type_parameters: true
+    avoid_single_cascade_in_expression_statements: true
+    avoid_slow_async_io: true
+    avoid_type_to_string: true
+    avoid_types_as_parameter_names: true
+    avoid_types_on_closure_parameters: false
+    avoid_unnecessary_containers: true
+    avoid_unused_constructor_parameters: true
+    avoid_void_async: false
+    avoid_web_libraries_in_flutter: true
+    await_only_futures: true
+    camel_case_extensions: true
+    camel_case_types: true
+    cancel_subscriptions: true
+    cascade_invocations: true
+    cast_nullable_to_non_nullable: false
+    close_sinks: false
+    collection_methods_unrelated_type: true
+    combinators_ordering: true
+    comment_references: false
+    conditional_uri_does_not_exist: true
+    constant_identifier_names: true
+    control_flow_in_finally: true
+    curly_braces_in_flow_control_structures: true
+    dangling_library_doc_comments: false
+    depend_on_referenced_packages: true
+    deprecated_consistency: true
+    diagnostic_describe_all_properties: false
+    directives_ordering: true
+    discarded_futures: false
+    do_not_use_environment: false
+    empty_catches: true
+    empty_constructor_bodies: true
+    empty_statements: true
+    eol_at_end_of_file: true
+    exhaustive_cases: true
+    file_names: true
+    flutter_style_todos: false
+    hash_and_equals: true
+    implementation_imports: true
+    implicit_call_tearoffs: true
+    implicit_reopen: true
+    invalid_case_patterns: true
+    join_return_with_assignment: false
+    leading_newlines_in_multiline_strings: false
+    library_annotations: true
+    library_names: true
+    library_prefixes: true
+    library_private_types_in_public_api: true
+    lines_longer_than_80_chars: false
+    literal_only_boolean_expressions: true
+    matching_super_parameters: false
+    missing_whitespace_between_adjacent_strings: false
+    no_adjacent_strings_in_list: true
+    no_default_cases: false
+    no_duplicate_case_values: true
+    no_leading_underscores_for_library_prefixes: true
+    no_leading_underscores_for_local_identifiers: true
+    no_literal_bool_comparisons: true
+    no_logic_in_create_state: true
+    no_runtimeType_toString: true
+    no_self_assignments: true
+    no_wildcard_variable_uses: true
+    non_constant_identifier_names: true
+    noop_primitive_operations: true
+    null_check_on_nullable_type_parameter: true
+    null_closures: true
+    omit_local_variable_types: false
+    one_member_abstracts: false
+    only_throw_errors: false
+    overridden_fields: true
+    package_api_docs: true
+    package_names: true
+    package_prefixed_library_names: true
+    parameter_assignments: false
+    prefer_adjacent_string_concatenation: true
+    prefer_asserts_in_initializer_lists: true
+    prefer_asserts_with_message: false
+    prefer_collection_literals: true
+    prefer_conditional_assignment: true
+    prefer_const_constructors: true
+    prefer_const_constructors_in_immutables: true
+    prefer_const_declarations: true
+    prefer_const_literals_to_create_immutables: true
+    prefer_constructors_over_static_methods: true
+    prefer_contains: true
+    prefer_double_quotes: false
+    prefer_expression_function_bodies: false
+    prefer_final_fields: true
+    prefer_final_in_for_each: true
+    prefer_final_locals: true
+    prefer_final_parameters: false
+    prefer_for_elements_to_map_fromIterable: true
+    prefer_foreach: true
+    prefer_function_declarations_over_variables: true
+    prefer_generic_function_type_aliases: true
+    prefer_if_elements_to_conditional_expressions: false
+    prefer_if_null_operators: true
+    prefer_initializing_formals: true
+    prefer_inlined_adds: true
+    prefer_int_literals: false
+    prefer_interpolation_to_compose_strings: true
+    prefer_is_empty: true
+    prefer_is_not_empty: true
+    prefer_is_not_operator: true
+    prefer_iterable_whereType: true
+    prefer_mixin: false
+    prefer_null_aware_method_calls: true
+    prefer_null_aware_operators: true
+    prefer_relative_imports: false
+    prefer_single_quotes: false
+    prefer_spread_collections: true
+    prefer_typing_uninitialized_variables: true
+    prefer_void_to_null: true
+    provide_deprecation_message: true
+    public_member_api_docs: false
+    recursive_getters: true
+    require_trailing_commas: false
+    secure_pubspec_urls: true
+    sized_box_for_whitespace: true
+    sized_box_shrink_expand: true
+    slash_for_doc_comments: true
+    sort_child_properties_last: true
+    sort_constructors_first: false
+    sort_pub_dependencies: true
+    sort_unnamed_constructors_first: false
+    test_types_in_equals: true
+    throw_in_finally: true
+    tighten_type_of_initializing_formals: true
+    type_annotate_public_apis: false
+    type_init_formals: true
+    type_literal_in_constant_pattern: true
+    unawaited_futures: false
+    unnecessary_await_in_return: true
+    unnecessary_brace_in_string_interps: true
+    unnecessary_breaks: false
+    unnecessary_const: true
+    unnecessary_constructor_name: true
+    unnecessary_final: false
+    unnecessary_getters_setters: true
+    unnecessary_lambdas: true
+    unnecessary_late: true
+    unnecessary_library_directive: true
+    unnecessary_new: true
+    unnecessary_null_aware_assignments: true
+    unnecessary_null_aware_operator_on_extension_on_nullable: true
+    unnecessary_null_checks: true
+    unnecessary_null_in_if_null_operators: true
+    unnecessary_nullable_for_final_variable_declarations: true
+    unnecessary_overrides: true
+    unnecessary_parenthesis: true
+    unnecessary_raw_strings: true
+    unnecessary_statements: true
+    unnecessary_string_escapes: true
+    unnecessary_string_interpolations: true
+    unnecessary_this: true
+    unnecessary_to_list_in_spreads: true
+    unnecessary_underscores: true
+    unreachable_from_main: true
+    unrelated_type_equality_checks: true
+    unsafe_html: true
+    use_build_context_synchronously: true
+    use_colored_box: true
+    use_decorated_box: true
+    use_enums: true
+    use_full_hex_values_for_flutter_colors: true
+    use_function_type_syntax_for_parameters: true
+    use_if_null_to_convert_nulls_to_bools: true
+    use_is_even_rather_than_modulo: true
+    use_key_in_widget_constructors: true
+    use_late_for_private_fields_and_variables: false
+    use_named_constants: true
+    use_null_aware_elements: true
+    use_raw_strings: true
+    use_rethrow_when_possible: true
+    use_setters_to_change_properties: false
+    use_string_buffers: true
+    use_string_in_part_of_directives: true
+    use_super_parameters: true
+    use_test_throws_matchers: true
+    use_to_and_as_if_applicable: true
+    valid_regexps: true
+    void_checks: true
+
+dart_code_metrics:
+  exclude:
+    unused-files:
+      - lib/integration_test/**
+  metrics-exclude:
+    - lib/data/mocks/**
+    - lib/data/mock_helpers/**
+  rules-exclude:
+    - lib/data/mocks/**
+    - lib/data/mock_helpers/**
+  metrics:
+    coupling-between-object-classes: 12
+    cyclomatic-complexity: 20
+    depth-of-inheritance-tree: 5
+    halstead-volume: 150
+    lines-of-code: 100
+    maintainability-index: 50
+    maximum-nesting-level: 5
+    number-of-added-methods: 10
+    number-of-external-imports: 5
+    number-of-implemented-interfaces: 5
+    number-of-imports: 10
+    number-of-methods: 10
+    number-of-overridden-methods: 10
+    number-of-parameters: 4
+    number-of-used-widgets: 20
+    response-for-class: 55
+    source-lines-of-code: 50
+    technical-debt:
+      threshold: 1
+      todo-cost: 161
+      ignore-cost: 320
+      ignore-for-file-cost: 396
+      as-dynamic-cost: 322
+      deprecated-annotations-cost: 37
+      file-nullsafety-migration-cost: 41
+      unit-type: "USD"
+    tight-class-cohesion: 0.33
+    weight-of-class: 0.33
+    weighted-methods-per-class: 35
+    widgets-nesting-level: 10
+  rules:
+    # common
+    # https://dcm.dev/docs/rules/#common
+    - avoid-unnecessary-patterns: true
+    - avoid-single-field-destructuring: true
+    - arguments-ordering: false
+    - avoid-accessing-collections-by-constant-index: false
+    - avoid-accessing-other-classes-private-members: true
+    - avoid-async-call-in-sync-function: false
+    - avoid-banned-file-names: false
+    - avoid-banned-imports:
+        entries:
+          - paths: ["/common/.*.dart"]
+            deny:
+              [
+                "package:avotech/data/.*.dart",
+                "package:avotech/domain/.*.dart",
+                "package:avotech/presentation/.*.dart",
+              ]
+            exclude-paths: [".*/test/.*.dart"]
+            message: "presentation,domain,data in common"
+            severity: error
+          - paths: ["/data/repositories/.*.dart"]
+            deny: ["/data/repositories/.*.dart"]
+            exclude-paths:
+              [
+                "data/repositories/analytics_repository_impl.dart",
+                ".*/test/.*.dart",
+              ]
+            message: "repositories in repositories"
+            severity: error
+          - paths: ["/domain/.*.dart"]
+            deny: ["/data/.*.dart"]
+            exclude-paths: [".*/test/.*.dart"]
+            message: "data in domain"
+            severity: error
+          - paths: ["/domain/.*.dart"]
+            deny: ["/presentation/.*.dart"]
+            message: "presentation in domain"
+            severity: error
+          - paths: ["/usecase/.*.dart"]
+            deny: ["/usecase/.*.dart"]
+            message: "usecase in usecase"
+            severity: error
+          - paths: ["core/lib/presentation/.*.dart","apps/agent/lib/presentation/.*.dart", "apps/client/lib/presentation/.*.dart" ]
+            deny: ["/data/.*.dart"]
+            exclude-paths: ["/test/.*.dart"]
+            message: "data in presentation"
+            severity: error
+          - paths: ["/presentation/assets/.*.dart"]
+            deny: ["/presentation/features/.*.dart"]
+            message: "features in assets"
+            severity: error
+          - paths: ["/domain/entities/.*.dart"]
+            deny: ["/features/.*.dart"]
+            message: "features in entities"
+            severity: error
+          - paths: ["/validators/.*.dart"]
+            deny: ["/features/.*.dart"]
+            message: "features in validators"
+            severity: error
+          - paths: ["/presentation/utils/.*.dart"]
+            deny: ["/features/.*.dart"]
+            message: "features in utils"
+            exclude-paths:
+              [
+                "/presentation/utils/a_b_segment_logger_mixin.dart",
+                "/presentation/utils/operation_approve_navigator.dart",
+                "/presentation/features/external_link/utils/external_links_extension.dart",
+                "/presentation/utils/action_handler/action_handler_mixin.dart",
+              ]
+            severity: error
+          - paths: ["/presentation/widgets/.*.dart"]
+            deny: ["/presentation/features/.*.dart"]
+            exclude-paths:
+              [
+                ".*/test/.*.dart",
+                "/presentation/widgets/text/public_offer.dart",
+              ]
+            message: "features in widget"
+            severity: error
+    - avoid-banned-types: false
+    - avoid-barrel-files: false
+    - avoid-banned-annotations: true
+    - avoid-bottom-type-in-patterns: true
+    - avoid-bottom-type-in-records: true
+    - avoid-cascade-after-if-null: true
+    - avoid-collapsible-if: true
+    - avoid-collection-equality-checks: false
+    - avoid-collection-methods-with-unrelated-types: true
+    - avoid-declaring-call-method: true
+    - avoid-double-slash-imports: true
+    - avoid-duplicate-exports: true
+    - avoid-duplicate-mixins: true
+    - avoid-duplicate-named-imports: true
+    - avoid-duplicate-patterns: true
+    - avoid-dynamic: false
+    - avoid-equal-expressions: true
+    - avoid-explicit-pattern-field-name: false
+    - avoid-explicit-type-declaration: false
+    - avoid-extensions-on-records: false
+    - avoid-function-type-in-records: true
+    - avoid-future-tostring: true
+    - avoid-generics-shadowing: true
+    - avoid-global-state: false
+    - avoid-identical-exception-handling-blocks: false
+    - avoid-ignoring-return-values: false
+    - avoid-importing-entrypoint-exports: false
+    - avoid-inverted-boolean-checks: true
+    - avoid-keywords-in-wildcard-pattern: true
+    - avoid-late-keyword: false
+    - avoid-local-functions: false
+    - avoid-long-files: false
+    - avoid-long-functions: false
+    - avoid-long-parameter-list: false
+    # TODO: Decrease value
+    - avoid-long-records:
+        max-number: 7
+    - avoid-map-keys-contains: true
+    - avoid-missed-calls: true
+    - avoid-missing-enum-constant-in-map: false
+    - avoid-missing-interpolation: false
+    - avoid-misused-wildcard-pattern: true
+    - avoid-mixing-named-and-positional-fields: false
+    - avoid-multi-assignment: true
+    - avoid-mutating-parameters: true
+    - avoid-negated-conditions: true
+    - avoid-nested-conditional-expressions: false
+    - avoid-nested-futures: true
+    - avoid-nested-records: true
+    - avoid-nested-streams-and-futures: true
+    - avoid-nested-switch-expressions: true
+    - avoid-nested-switches: true
+    - avoid-non-ascii-symbols: false
+    - avoid-non-null-assertion: false
+    - avoid-nullable-interpolation: false
+    - avoid-nullable-parameters-with-default-values: false
+    - avoid-one-field-records: true
+    - avoid-only-rethrow: false
+    - avoid-passing-async-when-sync-expected: false
+    - avoid-passing-default-values: false
+    - avoid-passing-self-as-argument: false
+    - avoid-positional-record-field-access: false
+    - avoid-recursive-calls: true
+    - avoid-redundant-async: false
+    - avoid-redundant-else: false
+    - avoid-redundant-positional-field-name: true
+    - avoid-redundant-pragma-inline: true
+    - avoid-referencing-discarded-variables: true
+    - avoid-returning-cascades: false
+    - avoid-self-assignment: true
+    - avoid-self-compare: true
+    - avoid-shadowed-extension-methods: true
+    - avoid-shadowing: false
+    - avoid-similar-names: false
+    - avoid-substring: false
+    - avoid-throw-in-catch-block: false
+    - avoid-throw-objects-without-tostring: false
+    - avoid-top-level-members-in-tests: false
+    - avoid-uncaught-future-errors: true
+    - avoid-unconditional-break: false
+    - avoid-unnecessary-call: false
+    - avoid-unnecessary-conditionals: true
+    - avoid-unnecessary-futures: true
+    - avoid-unnecessary-getter: false
+    - avoid-unnecessary-if: true
+    - avoid-unnecessary-local-late: true
+    - avoid-unnecessary-negations: true
+    - avoid-unnecessary-nullable-return-type: true
+    - avoid-unnecessary-reassignment: false
+    - avoid-unnecessary-return: true
+    - avoid-unnecessary-type-assertions: true
+    - avoid-unnecessary-type-casts: true
+    - avoid-unrelated-type-assertions: true
+    - avoid-unrelated-type-casts: true
+    - avoid-unsafe-collection-methods: false
+    - avoid-unused-generics: true
+    - avoid-unused-instances: false
+    - avoid-unused-parameters: true
+    - avoid-unsafe-reduce: true
+    - avoid-weak-cryptographic-algorithms: true
+    - avoid-wildcard-cases-with-enums: false
+    - avoid-recursive-tostring: true
+    - avoid-constant-assert-conditions: true
+    - avoid-nested-assignments: false
+    - avoid-unnecessary-compare-to: true
+    - avoid-inconsistent-digit-separators: false
+    - binary-expression-operand-order: true
+    - double-literal-format: true
+    - enum-constants-ordering: false
+    - format-comment: false
+    - format-test-name: false
+    - function-always-returns-null: false
+    - map-keys-ordering: false
+    - match-class-name-pattern:
+        entries:
+    - match-getter-setter-field-names: false
+    - match-positional-field-names-on-assignment: true
+    - member-ordering:
+        order:
+          - const-fields
+          - static-fields
+          - final-fields
+          - public-fields
+          - private-fields
+          - constructors
+          - getters-setters
+          - protected-methods
+          - overridden-methods
+          - public-methods
+          - private-methods
+        widgets-order:
+          - const-fields
+          - static-fields
+          - final-fields
+          - public-fields
+          - private-fields
+          - constructors
+          - getters-setters
+          - init-state-method
+          - did-change-dependencies-method
+          - did-update-widget-method
+          - dispose-method
+          - build-method
+          - public-methods
+          - private-methods
+    - missing-test-assertion: false
+    - move-records-to-typedefs: false
+    - move-variable-closer-to-its-usage:
+        ignore-const: false
+        ignore-after-if: true
+    - newline-before-case: false
+    - newline-before-return: false
+    - no-boolean-literal-compare: true
+    - no-empty-block: false
+    - no-equal-arguments: false
+    - no-equal-conditions: true
+    - no-equal-nested-conditions: true
+    - no-equal-switch-case: true
+    - no-equal-switch-expression-cases: false
+    - no-equal-then-else: true
+    - no-magic-number: false
+    - no-object-declaration: false
+    - parameters-ordering: false
+    - prefer-abstract-final-static-class: true
+    - prefer-async-await: false
+    - prefer-bytes-builder: true
+    - prefer-commenting-analyzer-ignores: false
+    - prefer-conditional-expressions: false
+    - prefer-correct-error-name:
+        allowed-names:
+          - error
+          - errors
+          - e
+    - prefer-correct-for-loop-increment: true
+    - prefer-correct-future-return-type: false
+    - prefer-correct-identifier-length: false
+    - prefer-correct-json-casts: false
+    - prefer-correct-stream-return-type: true
+    - prefer-correct-switch-length: false
+    - prefer-correct-test-file-name: false
+    - prefer-correct-type-name: false
+    - prefer-declaring-const-constructor:
+        allow-one: true
+    - prefer-early-return: false
+    - prefer-enums-by-name: false
+    - prefer-explicit-parameter-names: false
+    - prefer-first: false
+    - prefer-getter-over-method: false
+    - prefer-immediate-return: true
+    - prefer-iterable-of: true
+    - prefer-last: true
+    - prefer-match-file-name: false
+    - prefer-moving-to-variable: false
+    - prefer-named-boolean-parameters:
+        ignore-single: true
+        ignore-single-boolean: true
+    - prefer-named-imports: true
+    - prefer-named-parameters: false
+    - prefer-parentheses-with-if-null: true
+    - prefer-public-exception-classes: true
+    - prefer-return-await: true
+    - prefer-returning-conditional-expressions: false
+    - prefer-single-declaration-per-file: false
+    - prefer-simpler-patterns-null-check: true
+    - prefer-static-class: false
+    - prefer-test-matchers: false
+    - prefer-type-over-var: true
+    - prefer-unwrapping-future-or: false
+    - prefer-visible-for-testing-on-members: true
+    - prefer-wildcard-pattern: true
+    - tag-name: false
+    - unnecessary-trailing-comma: false
+    - prefer-switch-with-enums: false
+    - prefer-switch-with-sealed-classes: false
+    - avoid-misused-test-matchers: true
+    - prefer-any-or-every: true
+    - avoid-duplicate-test-assertions: false
+    - prefer-null-aware-spread: true
+    - prefer-unique-test-names: true
+    - prefer-specific-cases-first: true
+    - prefer-explicit-function-type: true
+    - avoid-inferrable-type-arguments: false
+    - avoid-duplicate-cascades: false
+    - avoid-duplicate-switch-case-conditions: true
+    - avoid-missing-test-files: true
+    - match-lib-folder-structure: false
+    - prefer-both-inlining-annotations: false
+    - avoid-collection-mutating-methods: false
+    - prefer-explicit-type-arguments: false
+    - avoid-unnecessary-super: true
+    - prefer-correct-setter-parameter-name: true
+    - prefer-prefixed-global-constants: false
+    - prefer-correct-callback-field-name: false
+    - prefer-typedefs-for-callbacks: false
+    - prefer-correct-handler-name: false
+    - prefer-addition-subtraction-assignments: false
+    - prefer-expect-later: true
+    - avoid-unreachable-for-loop: true
+    - avoid-unnecessary-length-check: true
+    - prefer-specifying-future-value-type: true
+    - avoid-default-tostring: false
+    - avoid-stream-tostring: true
+    - prefer-null-aware-elements:
+        ignore-nullable-chains: false
+    - avoid-unnecessary-null-aware-elements: true
+    - avoid-unnecessary-statements: true
+    - avoid-unnecessary-nullable-fields: true
+    - prefer-compound-assignment-operators: true
+    - avoid-deprecated-usage: false
+
+    # flutter
+    # https://dcm.dev/docs/rules/#flutter
+    - add-copy-with: false
+    - always-remove-listener: true
+    - avoid-border-all: true
+    - avoid-empty-setstate: true
+    - avoid-expanded-as-spacer: true
+    - avoid-incomplete-copy-with: false
+    - avoid-inherited-widget-in-initstate: false
+    - avoid-late-context: true
+    - avoid-recursive-widget-calls: true
+    - avoid-returning-widgets:
+        ignored-names:
+          - _buildWidget
+          - overlay
+          - overlayWithEntry
+        ignored-annotations:
+          - allowedAnnotation
+    - avoid-shrink-wrap-in-lists: false
+    - avoid-single-child-column-or-row: true
+    - avoid-state-constructors: true
+    - avoid-stateless-widget-initialized-fields: true
+    - avoid-unnecessary-overrides-in-state: true
+    - avoid-unnecessary-setstate: true
+    - avoid-unnecessary-stateful-widgets: true
+    - check-for-equals-in-render-object-setters: true
+    - consistent-update-render-object: true
+    - dispose-fields:
+        ignore-blocs: true
+    - prefer-action-button-tooltip: true
+    - prefer-const-border-radius: true
+    - prefer-correct-edge-insets-constructor: true
+    - prefer-dedicated-media-query-methods: true
+    - prefer-define-hero-tag: true
+    - prefer-extracting-callbacks: false
+    - prefer-single-widget-per-file: false
+    - prefer-sliver-prefix: false
+    - prefer-text-rich: true
+    - prefer-using-list-view: true
+    - prefer-widget-private-members:
+        ignore-static: true
+        ignored-names:
+    - proper-super-calls: true
+    - prefer-switch-expression:
+        ignore-fallthrough-cases: false
+    - avoid-unnecessary-continue: true
+    - no-empty-string: false
+    - use-existing-destructuring: true
+    - prefer-class-destructuring: false
+    - prefer-static-method: false
+    - avoid-if-with-many-branches: false
+    - prefer-commenting-future-delayed: false
+    - avoid-complex-arithmetic-expressions: false
+    - prefer-spacing: true
+    - use-closest-build-context: false
+    - prefer-transform-over-container: false
+    - prefer-align-over-container: true
+    - use-setstate-synchronously: true
+    - avoid-misused-set-literals: true
+    # we have singletons and we can't dispose them in consumers
+    - dispose-class-fields: false
+    - avoid-suspicious-super-overrides: true
+    - newline-before-method: true
+    - avoid-unnecessary-extends: false
+    - avoid-assignments-as-conditions: true
+    - avoid-unused-assignment: true
+    - avoid-unnecessary-overrides: true
+    - avoid-duplicate-constant-values: true
+    - avoid-unnecessary-enum-arguments: true
+    - prefer-contains: true
+    - avoid-unnecessary-constructor: true
+    - avoid-implicitly-nullable-extension-types: true
+    - avoid-unnecessary-enum-prefix: true
+    - avoid-non-final-exception-class-fields: true
+    - pass-existing-future-to-future-builder: true
+    - pass-existing-stream-to-stream-builder: true
+    - prefer-single-setstate: true
+    - avoid-mounted-in-setstate: true
+
+    # provider
+    # https://dcm.dev/docs/rules/#provider
+    - avoid-instantiating-in-value-provider: true
+    - avoid-read-inside-build: true
+    - avoid-watch-outside-build: true
+    - dispose-providers: true
+    - prefer-multi-provider: true
+    - prefer-nullable-provider-types: false
+    # bloc
+    # https://dcm.dev/docs/rules/#bloc
+    - avoid-bloc-public-methods: true
+    - avoid-cubits: false
+    - avoid-passing-bloc-to-bloc: true
+    - check-is-not-closed-after-async-gap: false
+    - prefer-correct-bloc-provider: true
+    - prefer-multi-bloc-provider: true
+    - emit-new-bloc-state-instances: true
+    - avoid-bloc-public-fields: false
+    - avoid-instantiating-in-bloc-value-provider: true
+    - avoid-returning-value-from-cubit-methods: true
+    - avoid-existing-instances-in-bloc-provider: true
+    # equatable
+    # https://dcm.dev/docs/rules/#equatable
+    - extend-equatable: false
+    - list-all-equatable-fields: true
+    # fake async
+    # https://dcm.dev/docs/rules/#fake-async
+    - avoid-async-callback-in-fake-async: true
+    # getit
+    # https://dcm.dev/docs/rules/#get-it
+    - avoid-functions-in-register-singleton: true
+    # flutter hooks
+    # https://dcm.dev/docs/rules/#get-it
+    - avoid-conditional-hooks: false
+    - avoid-hooks-outside-build: false
+    - avoid-misused-hooks: true
+    - prefer-use-callback: true
+    - prefer-use-prefix: false
+    # intl
+    # https://dcm.dev/docs/rules/#intl
+    - prefer-date-format: false
+    - prefer-intl-name: true
+    - prefer-number-format: false
+    - prefer-providing-intl-description: true
+    - prefer-providing-intl-examples: true
+    - provide-correct-intl-args: true
+    #getX
+    #https://dcm.dev/docs/rules/#getx
+    - always-remove-getx-listener: false
+    - avoid-getx-rx-inside-build: true
+    - dispose-getx-fields: true
+
+  pubspec-rules:
+    # pubspec
+    # https://dcm.dev/docs/rules/#pubspec
+    - avoid-any-version: true
+    - avoid-dependency-overrides: false
+    - banned-dependencies: false
+    # Temporarily fixed version flutter_secure_storage versions 9.0.0
+    # - prefer-caret-version-syntax: true
+    - prefer-correct-package-name: false
+    - prefer-correct-screenshots: false
+    - prefer-publish-to-none: true
+    - prefer-semver-version: true
+    - prefer-commenting-pubspec-ignores: true
