@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'presentation/screens/home/home.screen.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todoapp/blocs/task/task_bloc.dart';
+import 'package:todoapp/screens/home.screen.dart';
 
 void main() {
   runApp(const MainApp());
@@ -10,6 +12,9 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: HomeScreen());
+    return MultiBlocProvider(
+      providers: [BlocProvider<TaskBloc>(create: (_) => TaskBloc())],
+      child: const MaterialApp(debugShowCheckedModeBanner: false, home: HomeScreen()),
+    );
   }
 }
