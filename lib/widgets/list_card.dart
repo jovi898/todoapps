@@ -4,75 +4,61 @@ import 'package:todoapp/blocs/task/task_bloc.dart';
 import 'package:todoapp/models/task.dart';
 import 'package:todoapp/utils/app_colors.dart';
 
-class ListCard extends StatefulWidget {
+class ListCard extends StatelessWidget {
   final Task task;
   final int index;
-  final void Function(int) onToggleDone;
-  final void Function(int) onToggleFavorite;
-  const ListCard({
-    required this.task,
-    required this.index,
-    required this.onToggleDone,
-    required this.onToggleFavorite,
-    super.key,
-  });
+  const ListCard({required this.task, required this.index, super.key});
 
-  @override
-  State<ListCard> createState() => _ListCardState();
-}
-
-class _ListCardState extends State<ListCard> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 2),
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 6),
-        decoration: const BoxDecoration(
-          color: AppColors.white,
-          borderRadius: BorderRadius.all(Radius.circular(12)),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            IconButton(
-              icon: Icon(
-                size: 28,
-                widget.task.isDone ? Icons.check_circle : Icons.circle_outlined,
-                color: AppColors.blue,
-              ),
-              highlightColor: Colors.transparent,
-              onPressed: () => widget.onToggleDone(widget.index),
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      decoration: const BoxDecoration(
+        color: AppColors.white,
+        borderRadius: BorderRadius.all(Radius.circular(12)),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          IconButton(
+            icon: Icon(
+              size: 28,
+              task.isDone ? Icons.check_circle : Icons.circle_outlined,
+              color: AppColors.blue,
             ),
-            Expanded(
-              child: Text(
-                widget.task.text,
-                style: TextStyle(
-                  color: widget.task.isDone ? AppColors.blue : AppColors.black,
-                  decoration: widget.task.isDone ? TextDecoration.lineThrough : TextDecoration.none,
-                ),
+            highlightColor: AppColors.transparent,
+            onPressed: () => context.read<TaskBloc>().add(ToggleDone(task.id)),
+          ),
+          Expanded(
+            child: Text(
+              task.text,
+              style: TextStyle(
+                color: task.isDone ? AppColors.blue : AppColors.black,
+                decoration: task.isDone ? TextDecoration.lineThrough : TextDecoration.none,
               ),
             ),
-            IconButton(
-              icon: const Icon(Icons.edit),
-              onPressed: _toggleEditText,
-              highlightColor: AppColors.transparent,
+          ),
+          IconButton(
+            icon: const Icon(Icons.edit),
+            onPressed: () => _toggleEditText(context),
+            highlightColor: AppColors.transparent,
+          ),
+          IconButton(
+            icon: Icon(
+              task.favorite ? Icons.star : Icons.star_border,
+              color: task.favorite ? AppColors.blue : AppColors.grey,
             ),
-            IconButton(
-              icon: Icon(
-                widget.task.favorite ? Icons.star : Icons.star_border,
-                color: widget.task.favorite ? AppColors.blue : AppColors.grey,
-              ),
-              onPressed: () => widget.onToggleFavorite(widget.index),
-              highlightColor: AppColors.transparent,
-            ),
-          ],
-        ),
+            onPressed: () => context.read<TaskBloc>().add(ToggleFavorite(task.id)),
+            highlightColor: AppColors.transparent,
+          ),
+        ],
       ),
     );
   }
 
-  Future<void> _toggleEditText() async {
+  Future<void> _toggleEditText(BuildContext context) async {
+    // ignore: move-variable-closer-to-its-usage
+    final bloc = context.read<TaskBloc>();
     final newText = await showGeneralDialog<String>(
       context: context,
       transitionDuration: const Duration(milliseconds: 700),
@@ -87,10 +73,14 @@ class _ListCardState extends State<ListCard> {
         );
       },
       pageBuilder: (context, animation, secondaryAnimation) {
-        final controller = TextEditingController(text: widget.task.text);
+        final controller = TextEditingController(text: task.text);
         return AlertDialog(
           title: const Text("Редактировать"),
-          content: TextField(controller: controller, autofocus: true),
+          content: TextField(
+            controller: controller,
+            autofocus: true,
+            onSubmitted: (value) => Navigator.pop(context, controller.text.trim()),
+          ),
           actions: [
             TextButton(onPressed: () => Navigator.pop(context), child: const Text("Отмена")),
             TextButton(
@@ -101,9 +91,9 @@ class _ListCardState extends State<ListCard> {
         );
       },
     );
-    if (!mounted) return;
-    if (newText != null && newText.isNotEmpty) {
-      context.read<TaskBloc>().add(ToggleEditText(widget.index, newText));
+    if (!context.mounted) return;
+    if (newText != null && newText.trim().isNotEmpty) {
+      bloc.add(ToggleEditText(task.id, newText.trim()));
     }
   }
 }

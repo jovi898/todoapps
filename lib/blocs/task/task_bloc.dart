@@ -1,39 +1,58 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:todoapp/models/task.dart';
+import 'package:uuid/uuid.dart';
 
 part 'task_event.dart';
 part 'task_state.dart';
 
 class TaskBloc extends Bloc<TaskEvent, TaskState> {
   TaskBloc() : super(const TaskInitial()) {
-    final updated = List<Task>.of(state.tasks);
+    final updated = List<Task>.of(state.allTasks);
+
     on<AddTask>((event, emit) {
-      updated.add(Task(event.text));
-      emit(TaskLoaded(updated));
+      updated.add(Task(id: const Uuid().v4(), text: event.text));
+      emit(TaskLoaded(allTasks: updated, visibleTasks: updated));
     });
     on<ToggleDone>((event, emit) {
-      updated[event.index].isDone = !updated[event.index].isDone;
-      emit(TaskLoaded(updated));
+      final index = updated.indexWhere((task) => task.id == event.taskId);
+      if (index != -1) {
+        final oldTask = updated[index];
+        updated[index] = oldTask.copyWith(isDone: !oldTask.isDone);
+        emit(TaskLoaded(allTasks: updated, visibleTasks: updated));
+      }
     });
     on<ToggleFavorite>((event, emit) {
-      updated[event.index].favorite = !updated[event.index].favorite;
-      emit(TaskLoaded(updated));
+      final index = updated.indexWhere((task) => task.id == event.taskId);
+      if (index != -1) {
+        final oldTask = updated[index];
+        updated[index] = oldTask.copyWith(favorite: !oldTask.favorite);
+        emit(TaskLoaded(allTasks: updated, visibleTasks: updated));
+      }
     });
     on<ToggleEditText>((event, emit) {
-      final oldTask = updated[event.index];
-      updated[event.index] = Task(
-        event.newText,
-        isDone: oldTask.isDone,
-        favorite: oldTask.favorite,
-      );
-      emit(TaskLoaded(updated));
+      final index = updated.indexWhere((task) => task.id == event.taskId);
+      if (index != -1) {
+        final oldTask = updated[index];
+        updated[index] = oldTask.copyWith(text: event.newText);
+        emit(TaskLoaded(allTasks: updated, visibleTasks: updated));
+      }
     });
     on<SearchTasks>((event, emit) {
-      final filtred = state.tasks
-          .where((task) => task.text.toLowerCase().contains(event.search.toLowerCase()))
-          .toList();
-      emit(TaskSearchResult(filtred));
+      final query = event.query.toLowerCase();
+
+      if (query.isEmpty) {
+        emit(TaskLoaded(allTasks: state.allTasks, visibleTasks: state.allTasks));
+      } else {
+        final filtered = state.allTasks
+            .where((task) => task.text.toLowerCase().contains(query))
+            .toList();
+        emit(TaskLoaded(allTasks: state.allTasks, visibleTasks: filtered));
+      }
+    });
+    on<DeleteTask>((event, emit) {
+      final updatedTasks = state.allTasks.where((task) => task.id != event.taskId).toList();
+      emit(TaskLoaded(allTasks: updatedTasks, visibleTasks: updatedTasks));
     });
   }
 }

@@ -10,24 +10,36 @@ class AddTask extends TaskEvent {
 }
 
 class ToggleDone extends TaskEvent {
-  final int index;
+  final String taskId;
 
-  ToggleDone(this.index);
+  ToggleDone(this.taskId);
 }
 
 class ToggleFavorite extends TaskEvent {
-  final int index;
+  final String taskId;
 
-  ToggleFavorite(this.index);
+  ToggleFavorite(this.taskId);
 }
 
 class ToggleEditText extends TaskEvent {
-  final int index;
+  final String taskId;
   final String newText;
-  ToggleEditText(this.index, this.newText);
+  ToggleEditText(this.taskId, this.newText);
 }
 
 class SearchTasks extends TaskEvent {
-  final String search;
-  SearchTasks(this.search);
+  final String query;
+  SearchTasks(this.query);
+}
+
+class ToggleSearch extends TaskEvent {
+  final bool isSearching;
+
+  ToggleSearch(this.isSearching);
+}
+
+class DeleteTask extends TaskEvent {
+  final String taskId;
+
+  DeleteTask(this.taskId);
 }
