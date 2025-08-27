@@ -51,7 +51,22 @@ class _HomeScreenState extends State<HomeScreen> {
                   border: InputBorder.none,
                 ),
               )
-            : const Text('To Do List', style: TextStyle(color: AppColors.white)),
+            : Container(
+                width: 120,
+                decoration: const BoxDecoration(
+                  color: AppColors.transparentHalf,
+                  borderRadius: BorderRadius.all(Radius.circular(12)),
+                ),
+                padding: const EdgeInsets.all(8),
+                child: const Text(
+                  'Список дел',
+                  style: TextStyle(
+                    color: AppColors.blue,
+                    fontWeight: FontWeight.w700,
+                    fontSize: 18,
+                  ),
+                ),
+              ),
         backgroundColor: AppColors.transparent,
         actions: [
           IconButton(
@@ -68,29 +83,64 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(color: Colors.red),
-              child: Text("Меню", style: TextStyle(color: AppColors.white, fontSize: 24)),
-            ),
-            ListTile(
-              leading: const Icon(Icons.home),
-              title: const Text("Главная"),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.settings),
-              title: const Text("Настройки"),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-          ],
+      drawer: ColoredBox(
+        color: Colors.black.withOpacity(0.3),
+        child: FractionallySizedBox(
+          widthFactor: 0.7,
+          child: ListView(
+            children: [
+              Container(
+                height: 180,
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: const Column(
+                  spacing: 12,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CircleAvatar(
+                      radius: 60,
+                      backgroundImage: AssetImage('assets/images/avatar.jpg'),
+                    ),
+                    Text(
+                      'Джони Маржин',
+                      style: TextStyle(
+                        fontSize: 25,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w800,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              ListTile(
+                leading: const Icon(Icons.home, color: AppColors.white),
+                title: const Text(
+                  "Главная",
+                  style: TextStyle(
+                    color: AppColors.white,
+                    fontSize: 17,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.settings, color: AppColors.white),
+                title: const Text(
+                  "Настройки",
+                  style: TextStyle(
+                    color: AppColors.white,
+                    fontSize: 17,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                onTap: () {
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          ),
         ),
       ),
       body: BlocBuilder<TaskBloc, TaskState>(
@@ -117,11 +167,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     const Padding(
                       padding: EdgeInsets.symmetric(horizontal: 8, vertical: 6),
                       child: Text(
-                        'Groceries',
+                        'Заметки',
                         style: TextStyle(
                           fontSize: 36,
                           fontWeight: FontWeight.w600,
-                          color: AppColors.black,
+                          color: AppColors.white,
                         ),
                       ),
                     ),
@@ -133,7 +183,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             controller: _controller,
                             decoration: InputDecoration(
                               contentPadding: const EdgeInsets.symmetric(vertical: 18),
-                              hintText: 'Add a task..',
+                              hintText: 'Добавить задачу..',
                               hintStyle: const TextStyle(color: AppColors.grey, fontSize: 14),
                               prefixIcon: IconButton(
                                 icon: const Icon(Icons.add, size: 28),
