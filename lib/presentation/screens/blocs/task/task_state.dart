@@ -9,6 +9,7 @@ class TaskStateWithTasks extends TaskState {
   final int? editingTaskId;
   final bool isSearching;
   final String searchQuery;
+  final bool isFrozen;
 
   TaskStateWithTasks({
     this.allTasks = const [],
@@ -16,6 +17,7 @@ class TaskStateWithTasks extends TaskState {
     this.editingTaskId,
     this.isSearching = false,
     this.searchQuery = "",
+    this.isFrozen = false,
   });
 
   TaskStateWithTasks copyWith({
@@ -24,6 +26,7 @@ class TaskStateWithTasks extends TaskState {
     int? Function()? editingTaskId,
     bool? isSearching,
     String? searchQuery,
+    bool? isFrozen,
   }) {
     return TaskStateWithTasks(
       allTasks: allTasks ?? this.allTasks,
@@ -31,11 +34,14 @@ class TaskStateWithTasks extends TaskState {
       editingTaskId: editingTaskId == null ? this.editingTaskId : editingTaskId(),
       isSearching: isSearching ?? this.isSearching,
       searchQuery: searchQuery ?? this.searchQuery,
+      isFrozen: isFrozen ?? this.isFrozen,
     );
   }
 }
 
 class TaskInitial extends TaskState {}
+
+class MyFrozen extends TaskState {}
 
 class TaskFailure extends TaskState {
   final String message;

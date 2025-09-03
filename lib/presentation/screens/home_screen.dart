@@ -1,17 +1,14 @@
 import 'dart:io';
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:go_router/go_router.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:todoapp/core/constants/app_colors.dart';
 import 'package:todoapp/core/constants/app_text_styles.dart';
 import 'package:todoapp/core/constants/assets.dart';
 import 'package:todoapp/core/constants/locale_keys.g.dart';
+import 'package:todoapp/presentation/screens/blocs/background/background_cubit.dart';
 import 'package:todoapp/presentation/screens/blocs/task/task_bloc.dart';
-import 'package:todoapp/presentation/screens/cubit/background_cubit.dart';
 import 'package:todoapp/presentation/widgets/list_card.dart';
 import 'package:todoapp/presentation/widgets/tasks_app_bar.dart';
 
@@ -24,7 +21,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final _controller = TextEditingController();
-  final _picker = ImagePicker();
 
   @override
   void dispose() {
@@ -72,14 +68,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     fontWeight: FontWeight.w700,
                   ),
                 ),
-                onTap: () {
-                  context.goNamed('settings');
-                },
+                onTap: () {},
               ),
               ListTile(
                 leading: const Icon(Icons.wallpaper, color: AppColors.white),
                 title: Text(LocaleKeys.WALLPAPER.tr(), style: AppTextStyles.middleTextWhite),
-                onTap: _pickBackgroundImage,
+                onTap: context.watch<BackgroundCubit>().pickBackgroundImage,
               ),
             ],
           ),
@@ -92,8 +86,8 @@ class _HomeScreenState extends State<HomeScreen> {
               : FileImage(File(backgroundPath));
           return BlocBuilder<TaskBloc, TaskState>(
             builder: (context, state) {
-              if (state case TaskStateWithTasks(visibleTasks: final tasksToShow)) {
-                return DecoratedBox(
+              return switch (state) {
+                TaskStateWithTasks(visibleTasks: final tasksToShow) => DecoratedBox(
                   decoration: BoxDecoration(
                     image: DecorationImage(image: backgroundImage, fit: BoxFit.cover),
                   ),
@@ -176,22 +170,14 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                   ),
-                );
-              }
-              return const SizedBox.shrink();
+                ),
+                TaskFailure(message: final e) => Text("Ошибка: $e"),
+                _ => const SizedBox.shrink(),
+              };
             },
           );
         },
       ),
     );
-  }
-
-  Future<void> _pickBackgroundImage() async {
-    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
-
-    if (image != null) {
-      if (!mounted) return;
-      context.read<BackgroundCubit>().changeBackground(image.path);
-    }
   }
 }

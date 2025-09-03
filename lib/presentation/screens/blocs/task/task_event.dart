@@ -17,10 +17,16 @@ class ToggleDone extends TaskEvent {
   ToggleDone(this.taskId);
 }
 
-class ToggleFavorite extends TaskEvent {
+class FreezeTask extends TaskEvent {
   final int taskId;
 
-  ToggleFavorite(this.taskId);
+  FreezeTask(this.taskId);
+}
+
+class UnFreezeTask extends TaskEvent {
+  final int taskId;
+
+  UnFreezeTask(this.taskId);
 }
 
 class StartEditingTask extends TaskEvent {

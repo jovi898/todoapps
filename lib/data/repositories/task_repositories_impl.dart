@@ -28,7 +28,7 @@ class TaskRepositoryImpl implements TaskRepository {
   }
 
   @override
-  Future<void> toggleFavorite(int id) async {
+  Future<void> toggleFreeze(int id) async {
     final todo = await db.getTodoById(id);
     if (todo != null) {
       final updated = todo.copyWith(favorite: !todo.favorite);
@@ -50,8 +50,7 @@ class TaskRepositoryImpl implements TaskRepository {
     final todos = await db.getAllTodos();
     return todos
         .map(
-          (todo) =>
-              Task(id: todo.id, text: todo.title, isDone: todo.isdone, favorite: todo.favorite),
+          (todo) => Task(id: todo.id, text: todo.title, isDone: todo.isdone, freeze: todo.favorite),
         )
         .toList()
       ..sort((a, b) => b.id.compareTo(a.id));

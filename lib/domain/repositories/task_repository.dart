@@ -1,6 +1,6 @@
 import 'package:todoapp/domain/entities/task.dart';
 
-abstract class TaskRepository {
+abstract interface class TaskRepository {
   Future<List<Task>> getAllTask();
 
   Future<void> addTask(String text);
@@ -9,7 +9,7 @@ abstract class TaskRepository {
 
   Future<void> toggleDone(int id);
 
-  Future<void> toggleFavorite(int id);
+  Future<void> toggleFreeze(int id);
 
   Future<void> updateText(int id, String newText);
 }

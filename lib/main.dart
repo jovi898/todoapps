@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todoapp/injection/injection_container.dart';
 import 'package:todoapp/presentation/navigation/routes.dart';
+import 'package:todoapp/presentation/screens/blocs/background/background_cubit.dart';
 import 'package:todoapp/presentation/screens/blocs/task/task_bloc.dart';
-import 'package:todoapp/presentation/screens/cubit/background_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
