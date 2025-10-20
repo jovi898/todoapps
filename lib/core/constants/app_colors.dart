@@ -11,5 +11,5 @@ abstract final class AppColors {
   static const Color transparentHalf = Color.fromRGBO(255, 255, 255, 0.5);
   static const Color red = Color(0xFFFF0000);
   static Color blackWithOpacity = Colors.black.withOpacity(0.3);
-  static Color bluekWithOpacity = Colors.blue.withOpacity(0.6);
+  static Color blueWithOpacity = Colors.blue.withOpacity(0.6);
 }

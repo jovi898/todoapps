@@ -32,15 +32,19 @@ class _ListCardState extends State<ListCard> {
     return BlocBuilder<TaskBloc, TaskState>(
       builder: (context, state) {
         switch (state) {
-          case TaskStateWithTasks(editingTaskId: final editingId):
-            final isEditing = editingId == widget.task.id;
+          case TaskStateWithTasks():
+            final isEditing = state.editingTaskId == widget.task.id;
 
             return GestureDetector(
               onTap: () {
                 if (isEditing) {
                   final text = _controller.text.trim();
-                  if (text.isNotEmpty && text != widget.task.text) {
+                  if (text.isNotEmpty) {
                     context.read<TaskBloc>().add(UpdateTaskText(widget.task.id, text));
+                  } else {
+                    context.read<TaskBloc>()
+                      ..add(UpdateTaskText(widget.task.id, widget.task.text))
+                      ..add(StopEditingTask());
                   }
                 } else {
                   context.read<TaskBloc>().add(StartEditingTask(widget.task.id));
@@ -49,7 +53,7 @@ class _ListCardState extends State<ListCard> {
               child: Container(
                 padding: const EdgeInsets.symmetric(vertical: 10),
                 decoration: BoxDecoration(
-                  color: AppColors.bluekWithOpacity,
+                  color: AppColors.blueWithOpacity,
                   borderRadius: const BorderRadius.all(Radius.circular(12)),
                 ),
                 child: Row(
@@ -67,6 +71,7 @@ class _ListCardState extends State<ListCard> {
                     Expanded(
                       child: isEditing
                           ? TextField(
+                              key: const Key("TEXTFIELD_EDIT"),
                               autofocus: true,
                               style: const TextStyle(fontSize: 18, height: 1, letterSpacing: 0.8),
                               decoration: const InputDecoration(
@@ -99,18 +104,21 @@ class _ListCardState extends State<ListCard> {
                             ),
                     ),
                     IconButton(
+                      key: const Key("EDIT_TASK"),
                       icon: Icon(isEditing ? Icons.check : Icons.edit, color: AppColors.green),
                       onPressed: widget.task.freeze
                           ? null
                           : () {
                               if (isEditing) {
                                 final text = _controller.text.trim();
-                                if (text.isNotEmpty && text != widget.task.text) {
+                                if (text.isNotEmpty) {
                                   context.read<TaskBloc>().add(
                                     UpdateTaskText(widget.task.id, text),
                                   );
                                 } else {
-                                  context.read<TaskBloc>().add(StopEditingTask());
+                                  context.read<TaskBloc>()
+                                    ..add(UpdateTaskText(widget.task.id, widget.task.text))
+                                    ..add(StopEditingTask());
                                 }
                               } else {
                                 context.read<TaskBloc>().add(StartEditingTask(widget.task.id));

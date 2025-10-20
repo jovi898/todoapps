@@ -31,7 +31,7 @@ class _AppBarTasksState extends State<AppBarTasks> {
     return AppBar(
       leading: Builder(
         builder: (context) => IconButton(
-          icon: const Icon(Icons.menu_outlined),
+          icon: const Icon(Icons.menu),
           color: AppColors.white,
           onPressed: () {
             Scaffold.of(context).openDrawer();
@@ -43,6 +43,7 @@ class _AppBarTasksState extends State<AppBarTasks> {
           if (state is TaskStateWithTasks) {
             if (state.isSearching) {
               return TextField(
+                key: const Key("SEARCH_FIELD"),
                 controller: _searchController,
                 focusNode: _searchFocusNode,
                 onChanged: (value) {
@@ -80,16 +81,12 @@ class _AppBarTasksState extends State<AppBarTasks> {
 
               return IconButton(
                 icon: Icon(isSearching ? Icons.close : Icons.search, color: AppColors.white),
-                onPressed: () async {
+                onPressed: () {
                   if (isSearching) {
                     _searchController.clear();
                     context.read<TaskBloc>().add(StopSearch());
                   } else {
                     context.read<TaskBloc>().add(StartSearch());
-                    await Future.delayed(
-                      const Duration(milliseconds: 100),
-                      _searchFocusNode.requestFocus,
-                    );
                   }
                 },
               );

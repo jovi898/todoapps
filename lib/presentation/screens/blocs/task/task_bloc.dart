@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:todoapp/domain/entities/task.dart';
@@ -21,13 +22,11 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
     on<UpdateTaskText>(_onUpdateTaskText);
     on<SearchTasks>(
       _onSearchTasks,
-      transformer: (events, mappper) =>
-          events.debounceTime(const Duration(milliseconds: 500)).switchMap(mappper),
+      transformer: (events, mapper) =>
+          events.debounceTime(const Duration(milliseconds: 500)).switchMap(mapper),
     );
     on<StartSearch>(_onStartSearch);
     on<StopSearch>(_onStopSearch);
-
-    add(LoadTasks());
   }
 
   Future<void> _loadAllTasks(LoadTasks _, Emitter<TaskState> emit) async {
@@ -52,6 +51,9 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
 
   void _onDeleteTask(DeleteTask event, Emitter<TaskState> emit) async {
     try {
+      final currentState = state as TaskStateWithTasks;
+      final task = currentState.allTasks.firstWhere((task) => task.id == event.taskId);
+      if (task.freeze) return;
       await repository.deleteTask(event.taskId);
       final updated = await repository.getAllTask();
       emit(TaskStateWithTasks(allTasks: updated, visibleTasks: updated));

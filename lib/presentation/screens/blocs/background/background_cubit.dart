@@ -1,21 +1,17 @@
+import 'dart:typed_data';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:todoapp/domain/repositories/background_repository.dart';
 
 part 'background_state.dart';
 
-class BackgroundCubit extends Cubit<String?> {
-  final ImagePicker picker = ImagePicker();
-  BackgroundCubit() : super(null);
+class BackgroundCubit extends Cubit<Uint8List?> {
+  final BackgroundRepository backgroundRepository;
 
-  void changeBackground(String? path) {
-    emit(path);
-  }
+  BackgroundCubit(this.backgroundRepository) : super(null);
 
   Future<void> pickBackgroundImage() async {
-    final XFile? image = await picker.pickImage(source: ImageSource.gallery);
-    if (image != null) {
-      emit(image.path);
-    }
+    final imageBytes = await backgroundRepository.pickBackground();
+    emit(imageBytes);
   }
 }

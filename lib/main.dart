@@ -9,7 +9,7 @@ import 'package:todoapp/presentation/screens/blocs/task/task_bloc.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
-  setUp();
+  configureDI();
   runApp(
     EasyLocalization(
       supportedLocales: const [Locale('ru'), Locale('uz')],
@@ -27,7 +27,7 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<TaskBloc>(create: (_) => getIt<TaskBloc>()),
+        BlocProvider<TaskBloc>(create: (_) => getIt<TaskBloc>()..add(LoadTasks())),
         BlocProvider<BackgroundCubit>(create: (_) => getIt<BackgroundCubit>()),
       ],
       child: MaterialApp.router(
